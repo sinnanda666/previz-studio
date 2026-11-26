@@ -75,6 +75,28 @@ let cv=document.createElement('canvas');cv.width=1024;cv.height=160;let ctx=cv.g
 B(0,.08,15.5,40,.16,5,0xc9c8c0);for(let j=0;j<7;j++){B(-15,.12+j*.27,15-j*.45,4,.24+j*.54,.48,0xb6b7b3);}for(let j=0;j<9;j++)B(-16+j*4,.32,17.4,.28,.64,.28,stone);
 return;}
 
+if(type==='sku_social'){
+// Reference photograph: pale stone wings, blue ribbon windows, projecting central glazed tower. +Z front.
+const w=36,d=17,z=8.5,stone=0xd0d0c8,trim=0xaeb7bb,glass=0x315d82,red=0x843b35;
+B(0,8.5,0,w,17,d,stone);
+B(0,.45,0,w,.9,d+.1,0x877d72);
+for(let side of [-1,1]){
+ for(let f=0;f<5;f++){let y=2.1+f*3.15;
+ for(let j=0;j<5;j++){let x=side*(5.1+j*2.8);B(x,y,z+.07,2.45,1.28,.15,glass);for(let k=-1;k<=1;k++)B(x+k*.61,y,z+.17,.045,1.28,.07,trim);B(x,y-.69,z+.15,2.5,.12,.22,trim);}
+ }
+ for(let j=0;j<6;j++){let x=side*(3.7+j*2.8);B(x,8.8,z+.17,.23,16.3,.36,trim);B(x,17.25,z+.16,.32,.85,.45,trim);}
+ B(side*10.8,17.15,0,14.4,.45,17.5,stone);
+}
+// Central glass bays and projecting narrow vertical core.
+for(let side of [-1,1]){B(side*2.25,9.5,z+.35,3.5,16.5,.7,glass);for(let j=0;j<=5;j++)B(side*2.25-1.75+j*.7,9.5,z+.74,.055,16.5,.08,trim);for(let f=0;f<=10;f++)B(side*2.25,1.25+f*1.65,z+.74,3.5,.055,.08,trim);}
+B(0,10.1,z+1.05,1.65,20.2,1.8,0x536675);B(0,10.1,z+2,1.25,19.7,.12,0x24465f);for(let f=1;f<12;f++)B(0,f*1.65,z+2.08,1.25,.045,.06,trim);
+B(0,20.35,z+1.05,1.95,.35,2.05,red);
+for(let side of [-1,1]){let x=side*2.65;B(x,1.45,z+.85,3.1,2.9,.2,0x263b45);for(let j=-1;j<=1;j++)B(x+j*.95,1.45,z+1,.075,2.9,.12,trim);B(x,3.25,z+1.55,4.1,.65,2.3,red);for(let j=0;j<7;j++)B(x,.105*(j+1),z+4.1-j*.38,4.1,.21*(j+1),.4,0xb5b4ad);}
+B(0,.65,z+3.3,1.3,1.3,2.1,stone);B(0,1.32,z+3.3,1.5,.14,2.3,0x526344);
+for(let side of [-1,1])for(let f=0;f<5;f++){let y=2.1+f*3.15;for(let j=0;j<5;j++)B(side*18.05,y,-6+j*3,.12,1.25,1.8,glass);for(let j=0;j<10;j++)B(-16.2+j*3.6,y,-8.56,2.5,1.25,.12,glass);}
+const cv=document.createElement('canvas');cv.width=512;cv.height=96;const ctx=cv.getContext('2d');ctx.fillStyle='#843b35';ctx.fillRect(0,0,512,96);ctx.fillStyle='#f2e6cf';ctx.font='bold 48px sans-serif';ctx.textAlign='center';ctx.fillText('중생관',256,65);const tex=new T.CanvasTexture(cv);tex.colorSpace=T.SRGBColorSpace;const sign=new T.Mesh(new T.PlaneGeometry(3.7,.6),new T.MeshBasicMaterial({map:tex}));sign.position.set(-2.65,3.25,z+2.72);o.add(sign);return;
+}
+
 const skuSpecs={"sku_mem": ["기념관", 48, 19, 5, 9522242, 11], "sku_admin": ["재림관", 30, 22, 10, 12891811, 7], "sku_lib": ["학술정보관", 40, 26, 6, 12633285, 10], "sku_social": ["중생관", 36, 17, 5, 11903633, 9], "sku_young": ["영암관", 38, 18, 5, 10385510, 10], "sku_union": ["학생회관", 32, 24, 4, 11773338, 8], "sku_eng": ["성결관", 37, 18, 5, 12103585, 9], "sku_placeholder": ["신유관 (임시)", 25, 15, 5, 12105912, 6]};
 if(skuSpecs[type]){const [label,w,d,n,col,bays]=skuSpecs[type],h=n*3.5,trim=0xd4c9ba,glass=0x385867;
 B(0,h/2,0,w,h,d,col);B(0,.25,0,w+.5,.5,d+.5,0x777777);B(0,h+.25,0,w+.4,.5,d+.4,trim);
